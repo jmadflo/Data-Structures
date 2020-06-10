@@ -57,9 +57,9 @@ class BSTNode:
         fn(self.value)
 
         # start at root and run this method on each of the node's children (if any)
-        if self.left != None:
+        if self.left:
             self.left.for_each(fn)
-        if self.right != None:
+        if self.right:
             self.right.for_each(fn)
 
     # Part 2 -----------------------
