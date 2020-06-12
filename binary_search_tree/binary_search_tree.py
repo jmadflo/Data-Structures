@@ -55,7 +55,6 @@ class BSTNode:
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         fn(self.value)
-
         # start at root and run this method on each of the node's children (if any)
         if self.left:
             self.left.for_each(fn)
@@ -67,25 +66,58 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left: # if the current node has a left child node, run the method with that node as the argument
+            node.in_order_print(node.left)
+        print(node.value) # print the current node
+        if node.right: # run this method with the right child of the current node if it exists
+            node.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        queue = [node]
+
+        while len(queue) > 0:
+            current = queue.pop(0) # remove the current node from the list
+            # add children to end of queue from left to right
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+            print(current.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = [node] # initialize stack
+        while len(stack) > 0:
+            current = stack.pop()
+            print(current.value)
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            
 
     # Stretch Goals -------------------------
     # Note: Research may be required
 
+    # Pre-order means you run the current node before either child
+    # In-order means you run the left child, then the current node, and then the right child
+    # Post-order node means you run both the left and the right children before running the current node
+
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        print(node.value)
+        if node.left:
+            node.pre_order_dft(node.left)
+        if node.right:
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node.left:
+            node.post_order_dft(node.left)
+        if node.right:
+            node.post_order_dft(node.right)
+        print(node.value)
