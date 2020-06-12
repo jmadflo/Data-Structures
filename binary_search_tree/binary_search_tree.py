@@ -93,18 +93,31 @@ class BSTNode:
         while len(stack) > 0:
             current = stack.pop()
             print(current.value)
-            if current.left:
-                stack.append(current.left)
             if current.right:
                 stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            
 
     # Stretch Goals -------------------------
     # Note: Research may be required
 
+    # Pre-order means you run the current node before either child
+    # In-order means you run the left child, then the current node, and then the right child
+    # Post-order node means you run both the left and the right children before running the current node
+
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        print(node.value)
+        if node.left:
+            node.pre_order_dft(node.left)
+        if node.right:
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node.left:
+            node.post_order_dft(node.left)
+        if node.right:
+            node.post_order_dft(node.right)
+        print(node.value)
